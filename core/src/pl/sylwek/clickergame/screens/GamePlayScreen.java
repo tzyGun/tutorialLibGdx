@@ -17,6 +17,8 @@ public class GamePlayScreen extends AbstractScreen{
 	
 	private Button playerButton;
 	
+	private Button resetButton;
+	
 	private Label scoreLabel;
 	public GamePlayScreen(TutorialClickerGame game) {
 		super(game);
@@ -44,21 +46,39 @@ public class GamePlayScreen extends AbstractScreen{
 
 	private void update() {
 		stage.act();
-		
+		scoreLabel.setText(String.valueOf(game.getPoints()));
 	}
 
 	@Override
 	protected void init() {
 		initPlayer();
 		initPlayerButton();
+		initResetButton();
 		initScoreLabel();
 		
+	}
+
+	private void initResetButton() {
+		resetButton= new Button(new ButtonStyle());
+		resetButton.setX(300);
+		resetButton.setY(600);
+		resetButton.setWidth(50);
+		resetButton.setHeight(50);
+		resetButton.setDebug(true);
+		stage.addActor(resetButton);
+		resetButton.addListener(new ClickListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				game.setPoints(0);
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
 	}
 
 	private void initScoreLabel() {
 		LabelStyle labelStyle= new LabelStyle();
 		labelStyle.font=new BitmapFont();
-		scoreLabel= new Label("", labelStyle );
+		scoreLabel= new Label(String.valueOf(game.getPoints()), labelStyle );
 		scoreLabel.setX(20);
 		scoreLabel.setY(650);
 		stage.addActor(scoreLabel);
@@ -79,7 +99,7 @@ public class GamePlayScreen extends AbstractScreen{
 				System.out.println("click at x:"+x+"y:"+y+"event:"+event.toString());
 				player.reactOnClick();
 				game.addPoint();
-				scoreLabel.setText(String.valueOf(game.getPoints()));
+				
 				return super.touchDown(event, x, y, pointer, button);
 			}
 		});
