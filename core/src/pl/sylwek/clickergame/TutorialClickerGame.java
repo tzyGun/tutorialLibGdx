@@ -14,18 +14,13 @@ public class TutorialClickerGame extends  Game {
 	public final static int HEIGHT=700;
 	public final static String GAME_NAME="Tutorial Clicker";
 	
+	private int points;
+	
 	private boolean paused;
 	@Override
 	public void create () {
 		this.setScreen(new SplashScreen(this));
 	}
-
-
-
-
-
-	
-	
 	
 	public boolean isPaused() {
 		return paused;
@@ -34,4 +29,13 @@ public class TutorialClickerGame extends  Game {
 	public void setPaused(boolean paused) {
 		this.paused = paused;
 	}
+
+	public int getPoints() {
+		return points;
+	}
+	public void addPoint(){
+		points++;
+	}
+
+	
 }
