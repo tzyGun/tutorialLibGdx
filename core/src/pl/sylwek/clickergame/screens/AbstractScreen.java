@@ -23,7 +23,7 @@ public abstract class AbstractScreen implements Screen {
 	public AbstractScreen(TutorialClickerGame game){
 		this.game=game;
 		createCamera();
-		stage = new Stage(new StretchViewport(TutorialClickerGame.WIDTH, TutorialClickerGame.WIDTH,camera));
+		stage = new Stage(new StretchViewport(TutorialClickerGame.WIDTH, TutorialClickerGame.HEIGHT,camera));
 		spriteBatch = new SpriteBatch();
 		Gdx.input.setInputProcessor(stage);
 	}
