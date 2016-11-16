@@ -23,11 +23,7 @@ public class SplashScreen extends AbstractScreen{
 			
 		}, 4);
 	}
-	private void init() {
-		// TODO Auto-generated method stub
-		splashImage= new Texture("badlogic.jpg");
-		
-	}
+
 	@Override
 	public void render(float delta) {
 		// TODO Auto-generated method stub
@@ -35,6 +31,12 @@ public class SplashScreen extends AbstractScreen{
 		spriteBatch.begin();
 		spriteBatch.draw(splashImage, 0, 0);
 		spriteBatch.end();
+	}
+
+	@Override
+	protected void init() {
+		splashImage= new Texture("badlogic.jpg");
+		
 	}
 
 }

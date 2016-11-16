@@ -18,11 +18,7 @@ public class GamePlayScreen extends AbstractScreen{
 		
 	}
 
-	private void init() {
-		initPlayer();
-		stage.addActor(player);
-		
-	}
+	
 	@Override
 	public void render(float delta) {
 		
@@ -35,6 +31,13 @@ public class GamePlayScreen extends AbstractScreen{
 
 	private void update() {
 		stage.act();
+		
+	}
+
+	@Override
+	protected void init() {
+		initPlayer();
+		stage.addActor(player);
 		
 	}
 
