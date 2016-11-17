@@ -50,6 +50,8 @@ public class TutorialClickerGame extends  Game {
 	
 	public void setPoints(int points){
 		this.points=points;
+		prefs.putInteger(GAME_SCORE, points);
+		prefs.flush();
 	}
 	public void addPoint(){
 		points++;

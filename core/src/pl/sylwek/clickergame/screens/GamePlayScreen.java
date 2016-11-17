@@ -20,6 +20,7 @@ public class GamePlayScreen extends AbstractScreen{
 	private Button resetButton;
 	
 	private Label scoreLabel;
+	
 	public GamePlayScreen(TutorialClickerGame game) {
 		super(game);
 		// TODO Auto-generated constructor stub
@@ -46,7 +47,7 @@ public class GamePlayScreen extends AbstractScreen{
 
 	private void update() {
 		stage.act();
-		scoreLabel.setText(String.valueOf(game.getPoints()));
+		scoreLabel.setText("Score: "+String.valueOf(game.getPoints()));
 	}
 
 	@Override
@@ -78,7 +79,7 @@ public class GamePlayScreen extends AbstractScreen{
 	private void initScoreLabel() {
 		LabelStyle labelStyle= new LabelStyle();
 		labelStyle.font=new BitmapFont();
-		scoreLabel= new Label(String.valueOf(game.getPoints()), labelStyle );
+		scoreLabel= new Label("Score: "+String.valueOf(game.getPoints()), labelStyle );
 		scoreLabel.setX(20);
 		scoreLabel.setY(650);
 		stage.addActor(scoreLabel);
