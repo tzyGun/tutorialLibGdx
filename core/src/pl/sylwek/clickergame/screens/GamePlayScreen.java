@@ -1,5 +1,6 @@
 package pl.sylwek.clickergame.screens;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
@@ -21,9 +22,11 @@ public class GamePlayScreen extends AbstractScreen{
 	
 	private ScoreLabel scoreLabel;
 	
+	private Texture backGround;
+	
 	public GamePlayScreen(TutorialClickerGame game) {
 		super(game);
-		// TODO Auto-generated constructor stub
+		
 		
 		
 	}
@@ -40,6 +43,13 @@ public class GamePlayScreen extends AbstractScreen{
 		super.render(delta);
 		update();
 		System.out.println("Points: "+ game.getPoints());
+		
+		//Drawing background
+		spriteBatch.begin();
+		spriteBatch.draw(backGround,0,0);
+		spriteBatch.end();
+		
+		//Drawing entities
 		spriteBatch.begin();
 		stage.draw();
 		spriteBatch.end();
@@ -52,6 +62,7 @@ public class GamePlayScreen extends AbstractScreen{
 
 	@Override
 	protected void init() {
+		backGround = new Texture("bg.png");
 		initPlayer();
 		initPlayerButton();
 		initResetButton();
