@@ -1,18 +1,15 @@
 package pl.sylwek.clickergame.screens;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import pl.sylwek.clickergame.TutorialClickerGame;
 import pl.sylwek.clickergame.entities.Player;
 import pl.sylwek.clickergame.ui.IClickCallBack;
 import pl.sylwek.clickergame.ui.PlayerButton;
 import pl.sylwek.clickergame.ui.ResetButton;
+import pl.sylwek.clickergame.ui.ScoreLabel;
 
 public class GamePlayScreen extends AbstractScreen{
 	
@@ -22,7 +19,7 @@ public class GamePlayScreen extends AbstractScreen{
 	
 	private ResetButton resetButton;
 	
-	private Label scoreLabel;
+	private ScoreLabel scoreLabel;
 	
 	public GamePlayScreen(TutorialClickerGame game) {
 		super(game);
@@ -67,7 +64,7 @@ public class GamePlayScreen extends AbstractScreen{
 			
 			@Override
 			public void onClick() {
-				game.setPoints(0);
+				game.resetGameScore();
 			}
 		});
 		stage.addActor(resetButton);
@@ -75,11 +72,7 @@ public class GamePlayScreen extends AbstractScreen{
 	}
 
 	private void initScoreLabel() {
-		LabelStyle labelStyle= new LabelStyle();
-		labelStyle.font=new BitmapFont();
-		scoreLabel= new Label("Score: "+String.valueOf(game.getPoints()), labelStyle );
-		scoreLabel.setX(20);
-		scoreLabel.setY(650);
+		scoreLabel =new ScoreLabel();
 		stage.addActor(scoreLabel);
 	}
 

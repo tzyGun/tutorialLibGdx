@@ -45,8 +45,8 @@ public class TutorialClickerGame extends  Game {
 		return points;
 	}
 	
-	public void setPoints(int points){
-		this.points=points;
+	public void resetGameScore(){
+		this.points=0;
 		prefs.putInteger(GAME_SCORE, points);
 		prefs.flush();
 	}
