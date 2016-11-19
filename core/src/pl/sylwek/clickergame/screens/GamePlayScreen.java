@@ -10,14 +10,17 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import pl.sylwek.clickergame.TutorialClickerGame;
 import pl.sylwek.clickergame.entities.Player;
+import pl.sylwek.clickergame.ui.IClickCallBack;
+import pl.sylwek.clickergame.ui.PlayerButton;
+import pl.sylwek.clickergame.ui.ResetButton;
 
 public class GamePlayScreen extends AbstractScreen{
 	
 	private Player player;
 	
-	private Button playerButton;
+	private PlayerButton playerButton;
 	
-	private Button resetButton;
+	private ResetButton resetButton;
 	
 	private Label scoreLabel;
 	
@@ -60,20 +63,15 @@ public class GamePlayScreen extends AbstractScreen{
 	}
 
 	private void initResetButton() {
-		resetButton= new Button(new ButtonStyle());
-		resetButton.setX(300);
-		resetButton.setY(600);
-		resetButton.setWidth(50);
-		resetButton.setHeight(50);
-		resetButton.setDebug(true);
-		stage.addActor(resetButton);
-		resetButton.addListener(new ClickListener(){
+		resetButton = new ResetButton(new IClickCallBack() {
+			
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public void onClick() {
 				game.setPoints(0);
-				return super.touchDown(event, x, y, pointer, button);
 			}
 		});
+		stage.addActor(resetButton);
+		
 	}
 
 	private void initScoreLabel() {
@@ -86,24 +84,16 @@ public class GamePlayScreen extends AbstractScreen{
 	}
 
 	private void initPlayerButton() {
-		playerButton = new Button(new ButtonStyle());
-		playerButton.setWidth(460);
-		playerButton.setHeight(360);
-		playerButton.setX(10);
-		playerButton.setY(170);
-		playerButton.setDebug(true);
-		stage.addActor(playerButton);
-		playerButton.addListener(new ClickListener(){
+		playerButton= new PlayerButton(new IClickCallBack() {
+			
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				// TODO Auto-generated method stub
-				System.out.println("click at x:"+x+"y:"+y+"event:"+event.toString());
+			public void onClick() {
 				player.reactOnClick();
 				game.addPoint();
-				
-				return super.touchDown(event, x, y, pointer, button);
 			}
 		});
+		stage.addActor(playerButton);
+		
 		
 		
 		
