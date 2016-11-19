@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import pl.sylwek.clickergame.TutorialClickerGame;
+import pl.sylwek.clickergame.entities.FlyingObject;
 import pl.sylwek.clickergame.entities.Player;
 import pl.sylwek.clickergame.ui.IClickCallBack;
 import pl.sylwek.clickergame.ui.PlayerButton;
@@ -22,6 +23,7 @@ public class GamePlayScreen extends AbstractScreen{
 	
 	private Image backGroundImage;
 	
+	private FlyingObject flyingObject;
 	public GamePlayScreen(TutorialClickerGame game) {
 		super(game);
 		
@@ -62,6 +64,14 @@ public class GamePlayScreen extends AbstractScreen{
 		initPlayerButton();
 		initResetButton();
 		initScoreLabel();
+		initFlyingObject();
+		
+	}
+
+	private void initFlyingObject() {
+		flyingObject=new FlyingObject(FlyingObject.MONEY);
+		flyingObject.fly();
+		stage.addActor(flyingObject);
 		
 	}
 
