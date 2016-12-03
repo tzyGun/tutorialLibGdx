@@ -15,8 +15,8 @@ public  class FlyingObject extends Image{
 		MONEY,PASSIVE
 		
 	}
-	private final static int WIDTH=150;
-	private final static int HEIGHT=150;
+	private  static int WIDTH;
+	private  static int HEIGHT;
 	private final static int STARTING_X=0;
 	private final static int STARTING_Y=-100;
 	
@@ -27,10 +27,11 @@ public  class FlyingObject extends Image{
 	private TutorialClickerGame game;
 	
 	public  FlyingObject (FlyingObjectType type,TutorialClickerGame game){
-		super(new Texture(getTextureType(type)));
+		super(getImageDimensions(new Texture(getTextureType(type))));
 		
 		this.game=game;
 		this.type=type;
+		
 		this.setOrigin(WIDTH/2,HEIGHT/2);
 		this.setSize(WIDTH,HEIGHT);
 		
@@ -48,10 +49,17 @@ public  class FlyingObject extends Image{
 		
 		});
 	
-	
 		
 		
 }
+	
+	private  static Texture getImageDimensions(Texture texture){
+		WIDTH=texture.getWidth();
+		HEIGHT=texture.getHeight();
+		return texture;
+	}
+	
+	
 	private void reactOnClick() {
 		if(FlyingObjectType.MONEY.equals(type)){
 			game.addPoints(50);
