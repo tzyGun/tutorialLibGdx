@@ -1,6 +1,7 @@
 package pl.sylwek.clickergame.entities;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -17,7 +18,8 @@ public  class FlyingObject extends Image{
 	}
 	private  static int WIDTH;
 	private  static int HEIGHT;
-	private final static int STARTING_X=0;
+	private final static int STARTING_X1=0;
+	private final static int STARTING_X2=TutorialClickerGame.WIDTH;
 	private final static int STARTING_Y=-100;
 	
 	
@@ -25,7 +27,7 @@ public  class FlyingObject extends Image{
 	public final static String PASSIVE="passive.png";
 	private FlyingObjectType type;
 	private TutorialClickerGame game;
-	
+	private int startingX;
 	public  FlyingObject (FlyingObjectType type,TutorialClickerGame game){
 		super(getImageDimensions(new Texture(getTextureType(type))));
 		
@@ -36,7 +38,8 @@ public  class FlyingObject extends Image{
 		this.setSize(WIDTH,HEIGHT);
 		
 		//starting position
-		this.setPosition(STARTING_X, STARTING_Y);
+		startingX=MathUtils.randomBoolean()?STARTING_X1:STARTING_X2;
+		this.setPosition(startingX, STARTING_Y);
 		
 		this.addListener(new ClickListener(){
 			@Override
@@ -81,14 +84,20 @@ public  class FlyingObject extends Image{
 	}
 
 	public void fly(){
-		
+		int direction=0;
+		if(startingX==STARTING_X1){
+			direction=1;
+			
+		}else {
+			direction=-1;
+		}
 		Action a = Actions.parallel(
-				Actions.moveBy(300, 200, 5),
+				Actions.moveBy(direction* 300, 200, 5),
 				Actions.rotateBy(360, 5)
 				);
 		
 		Action b = Actions.parallel(
-				Actions.moveBy(-500, 900, 3),
+				Actions.moveBy(direction*500, 900, 3),
 				Actions.rotateBy(360, 3)
 				);
 		
