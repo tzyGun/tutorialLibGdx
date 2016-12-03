@@ -24,7 +24,7 @@ public class PlayerButton  extends Button{
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				// TODO Auto-generated method stub
-				System.out.println("click at x:"+x+"y:"+y+"event:"+event.toString());
+				
 				callBack.onClick();
 				return super.touchDown(event, x, y, pointer, button);
 			}

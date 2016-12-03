@@ -44,7 +44,7 @@ public class GamePlayScreen extends AbstractScreen{
 		
 		super.render(delta);
 		update();
-		System.out.println("Points: "+ game.getPoints());
+		
 		
 	
 		

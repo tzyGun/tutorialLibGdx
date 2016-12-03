@@ -12,12 +12,13 @@ import pl.sylwek.clickergame.entities.FlyingObject.FlyingObjectType;
 public class FlyingObjectsController {
 
 	private int spawnTime;
-	
+	private static int numOfThreads;
 	
 	
 	public FlyingObjectsController(Stage stage, TutorialClickerGame game){
 		
 		init(stage,game);
+		numOfThreads=0;
 		
 	}
 
@@ -34,6 +35,8 @@ public class FlyingObjectsController {
 					public void run() {
 						addRandomFlyingObject(game,stage);
 						randomizeSpawnTime();
+						numOfThreads++;
+						System.out.println("Watek :"+ this.toString()+ "Nr watku: "+numOfThreads);
 					}
 					
 				}, spawnTime);
