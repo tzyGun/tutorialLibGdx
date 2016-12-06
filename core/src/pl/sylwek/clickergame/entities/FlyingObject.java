@@ -33,7 +33,7 @@ public  class FlyingObject extends Image{
 		
 		this.game=game;
 		this.type=type;
-		
+		playSound();
 		this.setOrigin(WIDTH/2,HEIGHT/2);
 		this.setSize(WIDTH,HEIGHT);
 		
@@ -55,6 +55,12 @@ public  class FlyingObject extends Image{
 		
 		
 }
+	private void playSound(){
+		if(FlyingObjectType.MONEY.equals(type)){
+			game.playMoneySound();
+		}
+		
+	}
 	
 	private  static Texture getImageDimensions(Texture texture){
 		WIDTH=texture.getWidth();
@@ -91,13 +97,15 @@ public  class FlyingObject extends Image{
 		}else {
 			direction=-1;
 		}
+		
+		int time1=MathUtils.random(2,4);
 		Action a = Actions.parallel(
-				Actions.moveBy(direction* 300, 200, 5),
+				Actions.moveBy(direction* 300+MathUtils.random(-200,200), 200, time1),
 				Actions.rotateBy(360, 5)
 				);
 		
 		Action b = Actions.parallel(
-				Actions.moveBy(direction*500, 900, 3),
+				Actions.moveBy(direction*500+MathUtils.random(-200,200), 900, time1),
 				Actions.rotateBy(360, 3)
 				);
 		
