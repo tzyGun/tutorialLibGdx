@@ -46,6 +46,7 @@ public class Player extends Image{
 			this.addAction(Actions.rotateBy(MathUtils.randomSign() * 360, 0.4f));
 		}
 		
+		
 	}
 	
 	

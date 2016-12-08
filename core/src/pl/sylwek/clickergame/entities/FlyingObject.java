@@ -57,7 +57,10 @@ public  class FlyingObject extends Image{
 }
 	private void playSound(){
 		if(FlyingObjectType.MONEY.equals(type)){
-			game.playMoneySound();
+			game.getSoundService().playMoneySound();
+		}
+		if(FlyingObjectType.PASSIVE.equals(type)){
+			game.getSoundService().playBookSound();
 		}
 		
 	}
@@ -72,10 +75,11 @@ public  class FlyingObject extends Image{
 	private void reactOnClick() {
 		if(FlyingObjectType.MONEY.equals(type)){
 			game.addPoints(50);
+			
 		}else if(FlyingObjectType.PASSIVE.equals(type)){
 			game.addPassiveIncome();
 		}
-		
+		game.getSoundService().playPickSound();
 		System.out.println("Touched");
 		FlyingObject.this.remove();
 	}

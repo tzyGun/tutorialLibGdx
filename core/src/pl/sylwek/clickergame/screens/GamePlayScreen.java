@@ -67,7 +67,13 @@ public class GamePlayScreen extends AbstractScreen{
 		initResetButton();
 		initScoreLabel();
 		initFlyingObjectController();
+		startPlayingMusic();
 		
+		
+	}
+
+private void startPlayingMusic() {
+	game.getSoundService().playMusic(true);
 	}
 
 private void initFlyingObjectController() {
@@ -106,6 +112,7 @@ private void initFlyingObjectController() {
 			public void onClick() {
 				player.reactOnClick();
 				game.addPoint();
+				game.getSoundService().playJumpSound();
 			}
 		});
 		stage.addActor(playerButton);

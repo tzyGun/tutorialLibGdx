@@ -6,6 +6,7 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 
 import pl.sylwek.clickergame.screens.SplashScreen;
+import pl.sylwek.clickergame.service.SoundService;
 
 public class TutorialClickerGame extends  Game {
 	
@@ -18,8 +19,13 @@ public class TutorialClickerGame extends  Game {
 	private Preferences prefs;
 	private int points;
 	
-	private Sound moneySound;
+	private SoundService soundService;
 	
+	
+	public SoundService getSoundService() {
+		return soundService;
+	}
+
 	private boolean paused;
 	@Override
 	public void create () {
@@ -30,12 +36,16 @@ public class TutorialClickerGame extends  Game {
 	private void init() {
 		prefs= Gdx.app.getPreferences(GAME_PREFS);
 		loadScore();
-		moneySound = Gdx.audio.newSound(Gdx.files.internal("sounds/money1.mp3"));
+		initSoundService();
+		
 	}
 
-	public void playMoneySound(){
-		moneySound.play();
+
+	private void initSoundService() {
+		soundService= new SoundService();
+		
 	}
+
 	private void loadScore() {
 		points= prefs.getInteger(GAME_SCORE);
 	}
