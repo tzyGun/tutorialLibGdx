@@ -56,7 +56,7 @@ public class GamePlayScreen extends AbstractScreen{
 
 	private void update() {
 		stage.act();
-		scoreLabel.setText("Score: "+String.valueOf(game.getPoints()));
+		scoreLabel.setText("Score: "+String.valueOf(game.getScoreService().getPoints()));
 	}
 
 	@Override
@@ -93,7 +93,7 @@ private void initFlyingObjectController() {
 			
 			@Override
 			public void onClick() {
-				game.resetGameScore();
+				game.getScoreService().resetGameScore();
 			}
 		});
 		stage.addActor(resetButton);
@@ -111,7 +111,7 @@ private void initFlyingObjectController() {
 			@Override
 			public void onClick() {
 				player.reactOnClick();
-				game.addPoint();
+				game.getScoreService().addPoint();
 				game.getSoundService().playJumpSound();
 			}
 		});
