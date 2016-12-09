@@ -130,7 +130,8 @@ private void initFlyingObjectController() {
 	@Override
 	public void pause() {
 		super.pause();
-		game.getScoreService().saveCurrentTimeStamp();
+	
+		game.getScoreService().saveCurrentGamestate();
 	}
 
 }

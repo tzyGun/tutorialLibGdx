@@ -45,11 +45,9 @@ public class ScoreService {
 	public void resetGameScore(){
 		this.points=0;
 		this.passiveIncome=0;
-		updateScoreAndPassiveIncomeInPrefs();
 	}
 	public void addPoint(){
 		points++;
-		updateScoreAndPassiveIncomeInPrefs();
 	}
 	
 
@@ -60,19 +58,14 @@ public class ScoreService {
 
 	public void addPoints(int i) {
 		points+=i;
-		updateScoreAndPassiveIncomeInPrefs();
+		
 	}
 
-	private void updateScoreAndPassiveIncomeInPrefs() {
-		prefs.putInteger(GAME_SCORE, points);
-		prefs.putInteger(GAME_PASSIVE_INCOME, passiveIncome);
-		prefs.flush();
-	}
 
 	public void addPassiveIncome() {
 		passiveIncome++;
 		System.out.println("passive income :"+passiveIncome);
-		updateScoreAndPassiveIncomeInPrefs();
+		
 		
 	}
 	
@@ -90,10 +83,16 @@ public class ScoreService {
 		return prefs.getLong(GAME_SAVED_TIMESTAMP);
 	}
 
-	public void saveCurrentTimeStamp() {
-		prefs.putLong(GAME_SAVED_TIMESTAMP, TimeUtils.millis());
-		prefs.flush();
+
+
+
+
+	public void saveCurrentGamestate() {
 		
+		prefs.putLong(GAME_SAVED_TIMESTAMP, TimeUtils.millis());
+		prefs.putInteger(GAME_SCORE, points);
+		prefs.putInteger(GAME_PASSIVE_INCOME, passiveIncome);
+		prefs.flush();
 	}
 	
 }
