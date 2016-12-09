@@ -1,7 +1,5 @@
 package pl.sylwek.clickergame.screens;
 
-import javax.swing.plaf.basic.BasicArrowButton;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
@@ -9,12 +7,11 @@ import pl.sylwek.clickergame.TutorialClickerGame;
 import pl.sylwek.clickergame.controllers.FlyingObjectsController;
 import pl.sylwek.clickergame.controllers.RandomEventController;
 import pl.sylwek.clickergame.entities.Player;
-import pl.sylwek.clickergame.service.PassiveIncomeService;
+import pl.sylwek.clickergame.ui.BasicDialog;
+import pl.sylwek.clickergame.ui.GameLabel;
 import pl.sylwek.clickergame.ui.IClickCallBack;
 import pl.sylwek.clickergame.ui.PlayerButton;
 import pl.sylwek.clickergame.ui.ResetButton;
-import pl.sylwek.clickergame.ui.BasicDialog;
-import pl.sylwek.clickergame.ui.GameLabel;
 
 public class GamePlayScreen extends AbstractScreen{
 	
@@ -88,7 +85,7 @@ public class GamePlayScreen extends AbstractScreen{
 	}
 
 private void initRandomEventController() {
-		randomEventController= new RandomEventController(game);
+		randomEventController= new RandomEventController(game,stage);
 	}
 
 
@@ -96,9 +93,7 @@ private void initRandomEventController() {
 private void initPassiveIncomeDialog() {
 	if(game.getPassiveIncomeService().getPointsToAdd()>0){
 		BasicDialog basicDialog = new BasicDialog();
-		
-		stage.addActor(basicDialog);
-		basicDialog.initContent("Passive income added :"+
+		basicDialog.showDialog(stage,"Passive income added :"+
 				game.getPassiveIncomeService().getPointsToAdd());
 	}
 	}

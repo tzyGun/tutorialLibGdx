@@ -1,10 +1,12 @@
 package pl.sylwek.clickergame.controllers;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 
 import pl.sylwek.clickergame.TutorialClickerGame;
+import pl.sylwek.clickergame.ui.BasicDialog;
 
 public class RandomEventController {
 
@@ -12,9 +14,12 @@ public class RandomEventController {
 	
 	private TutorialClickerGame game;
 	
-	public RandomEventController(TutorialClickerGame game){
+	private Stage stage;
+	
+	public RandomEventController(TutorialClickerGame game, Stage stage){
 		init();
 		this.game= game;
+		this.stage=stage;
 	}
 
 	private void init() {
@@ -62,15 +67,21 @@ public class RandomEventController {
 
 	private void moneyEvent() {
 		game.getScoreService().addPoints(200);
+		BasicDialog dialog= new BasicDialog();
+		dialog.showDialog(stage, "You get additional money");
 		
 	}
 	
 	private void loseMoneyEvent() {
 		game.getScoreService().addPoints(-50);
+		BasicDialog dialog= new BasicDialog();
+		dialog.showDialog(stage, "You are losing money");
 		
 	}
 	
 	private void passiveIncomeEvent(){
 		game.getScoreService().addPassiveIncome();
+		BasicDialog dialog= new BasicDialog();
+		dialog.showDialog(stage, "Your passive income increased");
 	}
 }
