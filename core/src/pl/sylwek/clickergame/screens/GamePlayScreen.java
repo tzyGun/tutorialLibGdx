@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import pl.sylwek.clickergame.TutorialClickerGame;
 import pl.sylwek.clickergame.controllers.FlyingObjectsController;
 import pl.sylwek.clickergame.entities.Player;
+import pl.sylwek.clickergame.service.PassiveIncomeService;
 import pl.sylwek.clickergame.ui.IClickCallBack;
 import pl.sylwek.clickergame.ui.PlayerButton;
 import pl.sylwek.clickergame.ui.ResetButton;
@@ -26,12 +27,16 @@ public class GamePlayScreen extends AbstractScreen{
 	private FlyingObjectsController flyingObjectController;
 	
 	
+	
+	
 	public GamePlayScreen(TutorialClickerGame game) {
 		super(game);
 		
 		
 		
 	}
+	
+	
 
 	private void initPlayer() {
 		player = new Player();

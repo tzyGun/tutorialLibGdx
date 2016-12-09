@@ -3,6 +3,7 @@ package pl.sylwek.clickergame;
 import com.badlogic.gdx.Game;
 
 import pl.sylwek.clickergame.screens.SplashScreen;
+import pl.sylwek.clickergame.service.PassiveIncomeService;
 import pl.sylwek.clickergame.service.ScoreService;
 import pl.sylwek.clickergame.service.SoundService;
 
@@ -19,7 +20,9 @@ public class TutorialClickerGame extends  Game {
 	
 	private ScoreService scoreService;
 	
-
+	private PassiveIncomeService passiveIncomeService;
+	
+	
 	private boolean paused;
 	@Override
 	public void create () {
@@ -32,9 +35,14 @@ public class TutorialClickerGame extends  Game {
 		
 		initSoundService();
 		initScoreService();
+		initPassiveIncomeService();
 		
 	}
 	
+	
+	
+	
+
 	public boolean isPaused() {
 		return paused;
 	}
@@ -51,6 +59,11 @@ public class TutorialClickerGame extends  Game {
 	private void initSoundService() {
 		soundService= new SoundService();
 		
+	}
+	
+	private void initPassiveIncomeService() {
+		passiveIncomeService = new PassiveIncomeService(this.scoreService);
+		passiveIncomeService.start();
 	}
 	
 	
