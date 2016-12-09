@@ -2,12 +2,15 @@ package pl.sylwek.clickergame.service;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class ScoreService {
 
 	public final static String GAME_PREFS="package pl.sylwek.prefsgame";
 	public final static String GAME_SCORE="package pl.sylwek.prefsgame.score";
 	public final static String GAME_PASSIVE_INCOME="package pl.sylwek.prefsgame.passiveincome";
+	public final static String GAME_SAVED_TIMESTAMP="package pl.sylwek.prefsgame.gamesavetimestamp";
+
 	
 	private Preferences prefs;
 	private int points;
@@ -19,14 +22,21 @@ public class ScoreService {
 		
 	}
 	
+	
+	
 	private void init() {
 		prefs = Gdx.app.getPreferences(GAME_PREFS);
 		loadScore();
 		loadPassiveIncome();
 		
+		
 	}
 	
 	
+
+	
+
+
 
 	private void loadPassiveIncome() {
 		passiveIncome= prefs.getInteger(GAME_PASSIVE_INCOME);
@@ -73,6 +83,17 @@ public class ScoreService {
 
 	public int getPoints() {
 		return points;
+	}
+
+
+	public long getTimeStamp(){
+		return prefs.getLong(GAME_SAVED_TIMESTAMP);
+	}
+
+	public void saveCurrentTimeStamp() {
+		prefs.putLong(GAME_SAVED_TIMESTAMP, TimeUtils.millis());
+		prefs.flush();
+		
 	}
 	
 }
