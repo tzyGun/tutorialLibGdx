@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import pl.sylwek.clickergame.TutorialClickerGame;
 import pl.sylwek.clickergame.controllers.FlyingObjectsController;
+import pl.sylwek.clickergame.controllers.RandomEventController;
 import pl.sylwek.clickergame.entities.Player;
 import pl.sylwek.clickergame.service.PassiveIncomeService;
 import pl.sylwek.clickergame.ui.IClickCallBack;
@@ -28,6 +29,8 @@ public class GamePlayScreen extends AbstractScreen{
 	private Image backGroundImage;
 	
 	private FlyingObjectsController flyingObjectController;
+	
+	private RandomEventController randomEventController;
 	
 	
 	
@@ -77,11 +80,18 @@ public class GamePlayScreen extends AbstractScreen{
 		initResetButton();
 		initScoreLabel();
 		initFlyingObjectController();
+		initRandomEventController();
 		startPlayingMusic();
 		initPassiveIncomeDialog();
 		
 		
 	}
+
+private void initRandomEventController() {
+		randomEventController= new RandomEventController();
+	}
+
+
 
 private void initPassiveIncomeDialog() {
 	if(game.getPassiveIncomeService().getPointsToAdd()>0){
