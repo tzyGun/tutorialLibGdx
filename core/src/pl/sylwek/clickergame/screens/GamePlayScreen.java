@@ -1,5 +1,7 @@
 package pl.sylwek.clickergame.screens;
 
+import javax.swing.plaf.basic.BasicArrowButton;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
@@ -10,7 +12,8 @@ import pl.sylwek.clickergame.service.PassiveIncomeService;
 import pl.sylwek.clickergame.ui.IClickCallBack;
 import pl.sylwek.clickergame.ui.PlayerButton;
 import pl.sylwek.clickergame.ui.ResetButton;
-import pl.sylwek.clickergame.ui.ScoreLabel;
+import pl.sylwek.clickergame.ui.BasicDialog;
+import pl.sylwek.clickergame.ui.GameLabel;
 
 public class GamePlayScreen extends AbstractScreen{
 	
@@ -20,11 +23,13 @@ public class GamePlayScreen extends AbstractScreen{
 	
 	private ResetButton resetButton;
 	
-	private ScoreLabel scoreLabel;
+	private GameLabel scoreLabel;
 	
 	private Image backGroundImage;
 	
 	private FlyingObjectsController flyingObjectController;
+	
+	
 	
 	
 	
@@ -73,9 +78,22 @@ public class GamePlayScreen extends AbstractScreen{
 		initScoreLabel();
 		initFlyingObjectController();
 		startPlayingMusic();
+		initPassiveIncomeDialog();
 		
 		
 	}
+
+private void initPassiveIncomeDialog() {
+	if(game.getPassiveIncomeService().getPointsToAdd()>0){
+		BasicDialog basicDialog = new BasicDialog();
+		
+		stage.addActor(basicDialog);
+		basicDialog.initContent("Passive income added :"+
+				game.getPassiveIncomeService().getPointsToAdd());
+	}
+	}
+
+
 
 private void startPlayingMusic() {
 	game.getSoundService().playMusic(true);
@@ -106,7 +124,7 @@ private void initFlyingObjectController() {
 	}
 
 	private void initScoreLabel() {
-		scoreLabel =new ScoreLabel();
+		scoreLabel =new GameLabel();
 		stage.addActor(scoreLabel);
 	}
 

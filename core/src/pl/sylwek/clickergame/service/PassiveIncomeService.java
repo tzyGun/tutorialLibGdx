@@ -10,6 +10,12 @@ public class PassiveIncomeService {
 
 	private static final int DURATION = Integer.MAX_VALUE;
 	private ScoreService scoreService;
+	
+	private int pointsToAdd;
+	public int getPointsToAdd() {
+		return pointsToAdd;
+	}
+
 	public PassiveIncomeService(ScoreService service){
 		this.scoreService=service;
 		calculateTimeStampForOffIncome();
@@ -42,9 +48,9 @@ public class PassiveIncomeService {
 	
 	private void addPointsBasedOnTimestamp(long seconds){
 		if(seconds>0){
-			int points = (int) (seconds* this.scoreService.getPassiveIncome());
-			points/=4;
-			scoreService.addPoints(points);
+			pointsToAdd = (int) (seconds* this.scoreService.getPassiveIncome());
+			pointsToAdd/=4;
+			scoreService.addPoints(pointsToAdd);
 		}
 		
 	}

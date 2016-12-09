@@ -23,8 +23,8 @@ public  class FlyingObject extends Image{
 	private final static int STARTING_Y=-100;
 	
 	
-	public final static String MONEY="money.png";
-	public final static String PASSIVE="passive.png";
+	public final static String MONEY="img//money.png";
+	public final static String PASSIVE="img//passive.png";
 	private FlyingObjectType type;
 	private TutorialClickerGame game;
 	private int startingX;

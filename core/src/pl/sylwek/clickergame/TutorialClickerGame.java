@@ -23,6 +23,11 @@ public class TutorialClickerGame extends  Game {
 	private PassiveIncomeService passiveIncomeService;
 	
 	
+	public PassiveIncomeService getPassiveIncomeService() {
+		return passiveIncomeService;
+	}
+
+
 	private boolean paused;
 	@Override
 	public void create () {
@@ -76,6 +81,8 @@ public class TutorialClickerGame extends  Game {
 	public ScoreService getScoreService() {
 		return scoreService;
 	}
+	
+	
 
 	
 	
