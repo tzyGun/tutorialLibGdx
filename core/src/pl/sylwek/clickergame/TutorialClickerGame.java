@@ -1,4 +1,4 @@
-package pl.sylwek.clickergame;
+ package pl.sylwek.clickergame;
 
 import com.badlogic.gdx.Game;
 
